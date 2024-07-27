@@ -2,6 +2,7 @@ import fastify from 'fastify';
 import fastifyCors from '@fastify/cors';
 import fastifySwagger from '@fastify/swagger';
 import fastifySwaggerUi from '@fastify/swagger-ui';
+import qs from 'qs';
 import { IMAGES_GET } from './routes';
 
 export async function startServer() {
@@ -10,6 +11,7 @@ export async function startServer() {
     ignoreDuplicateSlashes: true,
     ignoreTrailingSlash: true,
     logger: process.env.DEBUG ? true : false,
+    querystringParser: (str) => qs.parse(str),
   });
 
   await server.register(fastifyCors, {
