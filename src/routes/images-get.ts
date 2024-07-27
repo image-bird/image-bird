@@ -3,7 +3,7 @@ import { RouteOptions } from 'fastify';
 import sharp from 'sharp';
 
 // resize **
-// extract
+// extract **
 // rotate
 // blur **
 // greyscale **
@@ -13,17 +13,24 @@ import sharp from 'sharp';
 
 // http://localhost:8080/images?blur=20&resize=680x680&url=https://cdn.24.co.za/files/Cms/General/d/12043/52a9329d98374d908a95a15eb9d2886f.jpg
 
+// http://localhost:8080/cdn.24.co.za/files/Cms/General/d/12043/52a9329d98374d908a95a15eb9d2886f.jpg?blur=20&resize=680x680
+
 export const IMAGES_GET: RouteOptions = {
   handler: async (request, reply) => {
+    const params: { fqdn: string; '*': string } = request.params as any;
+
     const query: {
       blur: string | undefined;
+      extract: string | undefined;
       format: 'jpeg' | 'jpg' | 'png' | 'webp' | undefined;
       greyscale: string | undefined;
       resize: string | undefined;
       url: string;
     } = request.query as any;
 
-    const response = await axios.get(query.url, {
+    // TODO: validate FQDN
+
+    const response = await axios.get(`https://${params.fqdn}/${params['*']}`, {
       responseType: 'arraybuffer',
     });
 
@@ -31,6 +38,16 @@ export const IMAGES_GET: RouteOptions = {
 
     if (query.blur) {
       x = x.blur(parseInt(query.blur));
+    }
+
+    if (query.extract) {
+      // TODO
+      x = x.extract({
+        height: parseInt(query.extract.split('x')[3]),
+        left: parseInt(query.extract.split('x')[0]),
+        width: parseInt(query.extract.split('x')[2]),
+        top: parseInt(query.extract.split('x')[1]),
+      });
     }
 
     if (query.greyscale) {
@@ -53,5 +70,5 @@ export const IMAGES_GET: RouteOptions = {
     reply.header('content-type', contentType).status(200).send(buffer);
   },
   method: 'GET',
-  url: '/images',
+  url: '/:fqdn/*',
 };
