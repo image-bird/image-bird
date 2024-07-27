@@ -6,7 +6,7 @@ spec:
   tls:
   - hosts:
     - imagebird.co
-    secretName: image-bird-co-secret
+    secretName: imagebird-co-secret
   rules:
     - host: "imagebird.co"
       http:
