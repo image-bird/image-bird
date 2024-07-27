@@ -2,13 +2,15 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: image-bird-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/hsts: "false"
 spec:
   tls:
   - hosts:
-    - imagebird.io
-    secretName: image-bird-io-secret
+    - imagebird.co
+    secretName: image-bird-co-secret
   rules:
-    - host: "imagebird.io"
+    - host: "imagebird.co"
       http:
         paths:
           - path: /
