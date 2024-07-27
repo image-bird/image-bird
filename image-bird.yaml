@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-bird-deployment
+spec:
+  replicas: 2
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: image-bird
+  template:
+    metadata:
+      labels:
+        app: image-bird
+    spec:
+      containers:
+      - name: image-bird
+        image: hirebarend/image-bird:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /api/v1/ping
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            path: /api/v1/health
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        envFrom:
+        - secretRef:
+            name: image-bird-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-bird-service
+spec:
+  selector:
+    app: image-bird
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

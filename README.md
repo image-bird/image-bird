@@ -1,1 +1,1 @@
-# image-bird
+# Image Bird
