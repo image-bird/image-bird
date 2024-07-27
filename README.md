@@ -11,13 +11,13 @@ from a single master image for high-quality, performant visual experiences at sc
 
 ![](https://imagebird.co/images.unsplash.com/photo-1573225935973-40b81f6e39e6?resize=600x600)
 
-### Composite Image`
+### Composite Image
 
 `https://upload.wikimedia.org/wikipedia/commons/4/41/BBC_Logo_2021.svg`
 
 ![](https://imagebird.co/upload.wikimedia.org/wikipedia/commons/4/41/BBC_Logo_2021.svg?format=webp&resize=800x800)
 
-### Result`
+### Result
 
 `https://imagebird.co/images.unsplash.com/photo-1573225935973-40b81f6e39e6`
 
