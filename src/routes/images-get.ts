@@ -2,6 +2,8 @@ import axios from 'axios';
 import { RouteOptions } from 'fastify';
 import sharp from 'sharp';
 
+sharp.cache(false);
+
 export const IMAGES_GET: RouteOptions = {
   handler: async (request, reply) => {
     const params: { fqdn: string; '*': string } = request.params as any;
