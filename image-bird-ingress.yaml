@@ -5,10 +5,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/hsts: "false"
 spec:
-  # tls:
-  # - hosts:
-  #   - imagebird.co
-  #   secretName: image-bird-co-secret
+  tls:
+  - hosts:
+    - imagebird.co
+    secretName: image-bird-co-secret
   rules:
     - host: "imagebird.co"
       http:
