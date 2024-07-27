@@ -17,11 +17,11 @@ from a single master image for high-quality, performant visual experiences at sc
 ### Result
 
 * URL: `https://imagebird.co/images.unsplash.com/photo-1573225935973-40b81f6e39e6?greyscale=true&resize[height]=800&resize[width]=800`
-* Size: `58.2 KB`
+* Size: `32.7 KB`
 * Dimensions: `800 x 533`
-* Format: `png`
+* Format: `webp`
 
-![](https://imagebird.co/images.unsplash.com/photo-1573225935973-40b81f6e39e6?greyscale=true&resize[height]=800&resize[width]=800)
+![](https://imagebird.co/images.unsplash.com/photo-1573225935973-40b81f6e39e6?format=webp&greyscale=true&resize[height]=800&resize[width]=800)
 
 ## Deployment
 
