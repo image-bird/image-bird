@@ -10,13 +10,23 @@ export const IMAGES_GET: RouteOptions = {
 
     const query: {
       blur: string | undefined;
-      composite: string | undefined;
-      compositeLeft: string | undefined;
-      compositeTop: string | undefined;
-      extract: string | undefined;
+      composite: {
+        left: string | undefined;
+        url: string;
+        top: string | undefined;
+      };
+      extract: {
+        height: string;
+        width: string;
+        x: string | undefined;
+        y: string | undefined;
+      };
       format: 'jpeg' | 'jpg' | 'png' | 'webp' | undefined;
       greyscale: string | undefined;
-      resize: string | undefined;
+      resize: {
+        height: string;
+        width: string;
+      };
     } = request.query as any;
 
     if (
@@ -41,10 +51,10 @@ export const IMAGES_GET: RouteOptions = {
 
     if (query.extract) {
       x = x.extract({
-        height: parseInt(query.extract.split('x')[3]),
-        left: parseInt(query.extract.split('x')[0]),
-        width: parseInt(query.extract.split('x')[2]),
-        top: parseInt(query.extract.split('x')[1]),
+        height: parseInt(query.extract.height),
+        left: query.extract.x ? parseInt(query.extract.x) : 0,
+        width: parseInt(query.extract.width),
+        top: query.extract.y ? parseInt(query.extract.y) : 0,
       });
     }
 
@@ -55,21 +65,23 @@ export const IMAGES_GET: RouteOptions = {
     if (query.resize) {
       x = x.resize({
         fit: 'inside',
-        height: parseInt(query.resize.split('x')[1]),
-        width: parseInt(query.resize.split('x')[0]),
+        height: parseInt(query.resize.height),
+        width: parseInt(query.resize.width),
       });
     }
 
     if (query.composite) {
-      const responseComposite = await axios.get(query.composite, {
+      const responseComposite = await axios.get(query.composite.url, {
         responseType: 'arraybuffer',
       });
 
       x = x.composite([
         {
           input: responseComposite.data,
-          left: query.compositeLeft ? parseInt(query.compositeLeft) : undefined,
-          top: query.compositeTop ? parseInt(query.compositeTop) : undefined,
+          left: query.composite.left
+            ? parseInt(query.composite.left)
+            : undefined,
+          top: query.composite.top ? parseInt(query.composite.top) : undefined,
         },
       ]);
     }
@@ -93,17 +105,17 @@ export const IMAGES_GET: RouteOptions = {
           description: '1 - 1000',
           nullable: true,
         },
-        composite: {
+        'composite[url]': {
           type: 'string',
-          description: 'URL',
+          description: '',
           nullable: true,
         },
-        compositeLeft: {
+        'composite[left]': {
           type: 'number',
           description: '',
           nullable: true,
         },
-        compositeTop: {
+        'composite[top]': {
           type: 'number',
           description: '',
           nullable: true,
@@ -123,9 +135,14 @@ export const IMAGES_GET: RouteOptions = {
           description: '',
           nullable: true,
         },
-        resize: {
-          type: 'string',
-          description: '?x?',
+        'resize[height]': {
+          type: 'number',
+          description: '',
+          nullable: true,
+        },
+        'resize[width]': {
+          type: 'number',
+          description: '',
           nullable: true,
         },
       },
