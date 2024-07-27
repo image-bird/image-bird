@@ -22,7 +22,7 @@ export async function startServer() {
       consumes: ['application/json'],
       host: process.env.DEBUG
         ? 'localhost:8080'
-        : process.env.HOST || 'imagebird.io',
+        : process.env.HOST || 'imagebird.co',
       info: {
         description: '',
         title: 'Image Bird API Specification',
