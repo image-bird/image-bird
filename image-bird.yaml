@@ -5,6 +5,11 @@ metadata:
 spec:
   replicas: 2
   revisionHistoryLimit: 0
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   selector:
     matchLabels:
       app: image-bird
@@ -19,6 +24,11 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            memory: "64Mi"
+          limits:
+            memory: "128Mi"
         livenessProbe:
           httpGet:
             path: /api/v1/ping
