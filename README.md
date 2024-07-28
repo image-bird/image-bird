@@ -60,8 +60,6 @@ Image Bird URL: `https://cdn.imagebird.co/images.unsplash.com/photo-157322593597
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/image-bird/image-bird/main/image-bird.yaml
-
-kubectl apply -f https://raw.githubusercontent.com/image-bird/image-bird/main/image-bird-ingress.yaml
 ```
 
 ## Contributing
