@@ -2,7 +2,7 @@ import axios from 'axios';
 import { RouteOptions } from 'fastify';
 import sharp from 'sharp';
 
-// http://localhost:8080/images.unsplash.com/photo-1573225935973-40b81f6e39e6?composite=http%3A%2F%2Flocalhost%3A8080%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F4%2F49%2FBBC_logo_white.svg%3Fformat%3Dpng%26resize%3D100x100&compositeLeft=20&compositeTop=20&greyscale=true&resize=800x800
+sharp.cache(false);
 
 export const IMAGES_GET: RouteOptions = {
   handler: async (request, reply) => {

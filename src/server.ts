@@ -26,7 +26,7 @@ export async function startServer() {
         ? 'localhost:8080'
         : process.env.HOST || 'imagebird.co',
       info: {
-        description: '',
+        description: `Empower developers with Image Bird's real-time URL-based API to create a host of transformations from a single master image for high-quality, performant visual experiences at scale.`,
         title: 'Image Bird API Specification',
         version: '0.1.0',
       },
