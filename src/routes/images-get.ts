@@ -120,9 +120,24 @@ export const IMAGES_GET: RouteOptions = {
           description: '',
           nullable: true,
         },
-        extract: {
-          type: 'string',
-          description: '?x?x?x?',
+        'extract[height]': {
+          type: 'number',
+          description: '',
+          nullable: true,
+        },
+        'extract[width]': {
+          type: 'number',
+          description: '',
+          nullable: true,
+        },
+        'extract[x]': {
+          type: 'number',
+          description: '',
+          nullable: true,
+        },
+        'extract[y]': {
+          type: 'number',
+          description: '',
           nullable: true,
         },
         format: {
