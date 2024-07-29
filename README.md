@@ -56,7 +56,21 @@ Image Bird URL: `https://cdn.imagebird.co/images.unsplash.com/photo-157322593597
 
 ![](https://cdn.imagebird.co/images.unsplash.com/photo-1573225935973-40b81f6e39e6?format=webp&greyscale=true&resize[height]=800&resize[width]=800&composite[url]=https://cdn.jsdelivr.net/gh/image-bird/image-bird@master/images/bbc-logo-white.png&composite[left]=20&composite[top]=20)
 
-## Deployment
+## Run Locally
+
+```bash
+git clone https://github.com/image-bird/image-bird.git
+
+cd image-bird
+
+npm install
+
+npm run dev
+
+# open http://localhost:8080 in your browser
+```
+
+## Run in Kubernetes
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/image-bird/image-bird/main/image-bird.yaml
