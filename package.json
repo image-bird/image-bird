@@ -11,7 +11,7 @@
   "author": "Barend Erasmus",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^22.0.2",
     "@types/qs": "^6.9.15",
     "prettier": "^3.3.2",
     "tslib": "^2.6.3",
@@ -23,11 +23,11 @@
     "@fastify/static": "^7.0.4",
     "@fastify/swagger": "^8.14.0",
     "@fastify/swagger-ui": "^4.0.1",
-    "axios": "^1.7.2",
+    "axios": "^1.7.3",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.0",
     "joi": "^17.13.3",
-    "qs": "^6.12.3",
+    "qs": "^6.13.0",
     "sharp": "^0.33.4"
   }
 }
