@@ -11,7 +11,7 @@
   "author": "Barend Erasmus",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^22.3.0",
+    "@types/node": "^22.4.1",
     "@types/qs": "^6.9.15",
     "prettier": "^3.3.2",
     "tslib": "^2.6.3",
@@ -28,6 +28,6 @@
     "fastify": "^4.28.0",
     "joi": "^17.13.3",
     "qs": "^6.13.0",
-    "sharp": "^0.33.4"
+    "sharp": "^0.33.5"
   }
 }
