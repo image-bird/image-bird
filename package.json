@@ -11,23 +11,23 @@
   "author": "Barend Erasmus",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^20.14.11",
-    "@types/qs": "^6.9.15",
+    "@types/node": "^22.5.5",
+    "@types/qs": "^6.9.16",
     "prettier": "^3.3.2",
-    "tslib": "^2.6.3",
+    "tslib": "^2.7.0",
     "tslint": "^6.1.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   },
   "dependencies": {
-    "@fastify/cors": "^9.0.1",
-    "@fastify/static": "^7.0.4",
-    "@fastify/swagger": "^8.14.0",
-    "@fastify/swagger-ui": "^4.0.1",
-    "axios": "^1.7.2",
+    "@fastify/cors": "^10.0.0",
+    "@fastify/static": "^8.0.0",
+    "@fastify/swagger": "^9.0.0",
+    "@fastify/swagger-ui": "^5.0.0",
+    "axios": "^1.7.7",
     "dotenv": "^16.4.5",
-    "fastify": "^4.28.0",
+    "fastify": "^5.0.0",
     "joi": "^17.13.3",
-    "qs": "^6.12.3",
-    "sharp": "^0.33.4"
+    "qs": "^6.13.0",
+    "sharp": "^0.33.5"
   }
 }

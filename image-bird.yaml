@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: image-bird-deployment
 spec:
-  replicas: 2
+  replicas: 1
   revisionHistoryLimit: 0
   strategy:
     type: RollingUpdate
@@ -26,21 +26,21 @@ spec:
         - containerPort: 8080
         resources:
           requests:
-            memory: "64Mi"
+            memory: "256Mi"
           limits:
-            memory: "128Mi"
+            memory: "512Mi"
         livenessProbe:
           httpGet:
             path: /api/v1/ping
             port: 8080
           initialDelaySeconds: 5
-          periodSeconds: 5
+          periodSeconds: 10
         readinessProbe:
           httpGet:
             path: /api/v1/health
             port: 8080
           initialDelaySeconds: 5
-          periodSeconds: 5
+          periodSeconds: 10
 ---
 apiVersion: v1
 kind: Service
