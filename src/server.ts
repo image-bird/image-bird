@@ -7,10 +7,11 @@ import { IMAGES_GET } from './routes';
 
 export async function startServer() {
   const server = fastify({
+    bodyLimit: 10 * 1048576, // 10MB
     caseSensitive: false,
     ignoreDuplicateSlashes: true,
     ignoreTrailingSlash: true,
-    logger: process.env.DEBUG ? true : false,
+    logger: true,
     querystringParser: (str) => qs.parse(str),
   });
 
@@ -19,19 +20,36 @@ export async function startServer() {
     origin: '*',
   });
 
+  await server.addContentTypeParser(
+    '*',
+    { parseAs: 'buffer' },
+    (
+      request: any,
+      payload: any,
+      done: (error: Error | null, body: Buffer) => void,
+    ) => {
+      done(null, payload);
+    },
+  );
+
   await server.register(fastifySwagger, {
     swagger: {
       consumes: ['application/json'],
-      host: process.env.DEBUG
-        ? 'localhost:8080'
-        : process.env.HOST || 'imagebird.co',
+      host: process.env.HOST || 'localhost:8080',
       info: {
-        description: `Empower developers with Image Bird's real-time URL-based API to create a host of transformations from a single master image for high-quality, performant visual experiences at scale.`,
-        title: 'Image Bird API Specification',
+        description: '',
+        title: 'API Specification',
         version: '0.1.0',
       },
       produces: ['application/json'],
-      schemes: process.env.DEBUG ? ['http'] : ['https', 'http'],
+      schemes: process.env.HOST ? ['https', 'http'] : ['http'],
+      securityDefinitions: {
+        apiKey: {
+          type: 'apiKey',
+          name: 'Authorization',
+          in: 'header',
+        },
+      },
       externalDocs: {
         url: 'https://github.com/image-bird/image-bird',
         description: 'View Offical Documentation',
@@ -58,7 +76,11 @@ export async function startServer() {
 
   server.route({
     handler: async (request, reply) => {
-      reply.status(200).send();
+      try {
+        reply.status(200).send();
+      } catch {
+        reply.status(503).send();
+      }
     },
     method: 'GET',
     url: '/api/v1/health',
