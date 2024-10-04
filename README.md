@@ -70,10 +70,10 @@ npm run dev
 # open http://localhost:8080 in your browser
 ```
 
-## Run in Kubernetes
+## Deploy to Kubernetes
 
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/image-bird/image-bird/main/image-bird.yaml
+helm install my-image-bird https://raw.githubusercontent.com/image-bird/image-bird/main/helm-charts/image-bird-0.1.0.tgz
 ```
 
 ## Contributing
