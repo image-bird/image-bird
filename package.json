@@ -11,7 +11,7 @@
   "author": "Barend Erasmus",
   "license": "MIT",
   "devDependencies": {
-    "@types/node": "^22.10.0",
+    "@types/node": "^22.10.1",
     "@types/qs": "^6.9.17",
     "prettier": "^3.4.1",
     "tslib": "^2.8.1",
